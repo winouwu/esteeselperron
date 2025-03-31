@@ -1,6 +1,6 @@
 # Compilador Eswino
 
-Un simple compilador para archivos con extensión `.eswino` que ejecuta la función `conjura` para imprimir texto en la consola.
+Un simple compilador para archivos con extensión `.eswino` que ejecuta la función `conjura` para imprimir texto en la consola y permite la declaración de variables con `alohomora`.
 
 ## Requisitos
 
@@ -12,20 +12,39 @@ Un simple compilador para archivos con extensión `.eswino` que ejecuta la funci
 2. Ejecuta el compilador:
 
 ```
-python compiler.py miarchivo.eswino
+python compilador/compiler.py ejemplos/miarchivo.eswino
 ```
 
 ## Sintaxis
 
-El compilador actualmente soporta la función `conjura` para imprimir texto:
+El compilador actualmente soporta:
+
+### Impresión de texto
+Usa la función `conjura` para imprimir texto o variables:
 
 ```
 conjura("texto a imprimir")
+conjura(variable)
 ```
 
-## Ejemplo
+### Declaración de variables
+Usa `alohomora` para declarar variables:
 
-El archivo de ejemplo `ejemplo.eswino` contiene:
+```
+alohomora nombre = valor
+```
+
+Ejemplos:
+```
+alohomora x = 5
+alohomora mensaje = "Hola mundo"
+alohomora suma = 10 + 20
+```
+
+## Ejemplos
+
+### Ejemplo básico
+El archivo de ejemplo `ejemplos/ejemplo.eswino` contiene:
 
 ```
 conjura("Hola Mundo desde eswino!")
@@ -33,10 +52,15 @@ conjura("Esta es otra línea")
 conjura("El compilador funciona!")
 ```
 
-Al ejecutar `python compiler.py ejemplo.eswino`, el resultado será:
+### Ejemplo con variables
+El archivo `ejemplos/variables.eswino` muestra cómo trabajar con variables:
 
 ```
-Hola Mundo desde eswino!
-Esta es otra línea
-El compilador funciona!
+alohomora numero = 5
+conjura(numero)
+// Imprime: 5
+
+alohomora texto = "Hola desde variable"
+conjura(texto)
+// Imprime: Hola desde variable
 ``` 

@@ -1,0 +1,24 @@
+// Ejemplo de uso de variables en eswino
+
+// Declaración de variables
+alohomora numero = 5
+alohomora texto = "Hola desde una variable"
+alohomora suma = 10 + 15
+alohomora pi = 3.14159
+
+// Impresión de variables
+conjura("Valores de las variables:")
+conjura(numero)
+conjura(texto)
+conjura(suma)
+conjura(pi)
+
+// Operaciones con variables
+alohomora resultado = numero * 2
+conjura("El doble de numero es:")
+conjura(resultado)
+
+// Combinando texto y variables
+alohomora mensaje = "El valor de pi es aproximadamente: "
+conjura(mensaje)
+conjura(pi) 
