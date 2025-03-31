@@ -1,6 +1,6 @@
 # Compilador Eswino
 
-Un simple compilador para archivos con extensión `.eswino` que ejecuta la función `conjura` para imprimir texto en la consola y permite la declaración de variables con `alohomora`.
+Un compilador para archivos con extensión `.eswino` que ejecuta la función `conjura` para imprimir texto en la consola, permite la declaración de variables con `alohomora` y soporta comentarios.
 
 ## Requisitos
 
@@ -41,26 +41,42 @@ alohomora mensaje = "Hola mundo"
 alohomora suma = 10 + 20
 ```
 
+### Arreglos
+Puedes crear y utilizar arreglos:
+
+```
+alohomora numeros = [1, 2, 3, 4, 5]
+alohomora nombres = ["Juan", "Pedro", "María"]
+```
+
+### Comentarios
+Hay dos tipos de comentarios:
+
+#### Comentarios de una línea
+Usa el símbolo `$` para comentarios de una línea:
+
+```
+$ Este es un comentario de una línea
+alohomora x = 10 $ Este también es un comentario
+```
+
+#### Comentarios multilínea
+Usa `¡` para iniciar y `!` para terminar un comentario multilínea:
+
+```
+¡
+Este es un comentario
+que ocupa varias líneas
+y será ignorado por el compilador
+!
+```
+
 ## Ejemplos
 
-### Ejemplo básico
-El archivo de ejemplo `ejemplos/ejemplo.eswino` contiene:
+El repositorio incluye varios ejemplos:
 
-```
-conjura("Hola Mundo desde eswino!")
-conjura("Esta es otra línea")
-conjura("El compilador funciona!")
-```
-
-### Ejemplo con variables
-El archivo `ejemplos/variables.eswino` muestra cómo trabajar con variables:
-
-```
-alohomora numero = 5
-conjura(numero)
-// Imprime: 5
-
-alohomora texto = "Hola desde variable"
-conjura(texto)
-// Imprime: Hola desde variable
-``` 
+- `ejemplos/ejemplo.eswino`: Ejemplo básico de impresión
+- `ejemplos/variables.eswino`: Ejemplo de uso de variables
+- `ejemplos/arreglos.eswino`: Ejemplo de uso de arreglos
+- `ejemplos/operaciones.eswino`: Ejemplo de operaciones aritméticas
+- `ejemplos/comentarios.eswino`: Ejemplo de uso de comentarios 

@@ -1,0 +1,37 @@
+// Ejemplo de comentarios en eswino
+
+$ Este es un comentario de una línea con $
+alohomora numero = 42 $ Esto también es un comentario al final de una línea
+
+$ Los comentarios de una línea se ignoran completamente
+conjura("Este texto se imprimirá")
+
+¡
+Este es un comentario
+multilínea que puede ocupar
+varias líneas y será ignorado
+completamente por el compilador
+!
+
+conjura("Este texto también se imprimirá")
+
+alohomora mensaje = "Hola desde eswino" $ Comentario después de una declaración
+conjura(mensaje)
+
+¡
+Los comentarios multilínea pueden contener
+cualquier cosa, incluso código que no se ejecutará:
+alohomora x = 100
+conjura("Esto no se imprimirá")
+!
+
+$ Podemos combinar los dos tipos de comentarios
+alohomora operacion = 5 + 5 $ Suma básica
+
+¡
+Comentario
+multilínea
+!
+
+conjura("El resultado de la operación es:")
+conjura(operacion) 

@@ -15,8 +15,15 @@ def interpret_eswino(code):
     variables["true"] = True
     variables["false"] = False
     
+    # Eliminar comentarios multilínea
+    code = re.sub(r'¡.*?!', '', code, flags=re.DOTALL)
+    
     # Procesar el código línea por línea
     for line in code.splitlines():
+        # Eliminar comentarios de una línea
+        if '$' in line:
+            line = line.split('$', 1)[0]
+            
         line = line.strip()
         if not line or line.startswith('//'):
             continue
