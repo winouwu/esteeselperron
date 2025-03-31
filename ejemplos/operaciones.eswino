@@ -1,0 +1,58 @@
+// Ejemplo de operaciones aritméticas en eswino
+
+// Declaración de variables numéricas
+alohomora a = 10
+alohomora b = 5
+
+// Operación de suma
+alohomora suma = a + b
+conjura("Suma:")
+conjura(a)
+conjura("+")
+conjura(b)
+conjura("=")
+conjura(suma)
+
+// Operación de resta
+alohomora resta = a - b
+conjura("Resta:")
+conjura(a)
+conjura("-")
+conjura(b)
+conjura("=")
+conjura(resta)
+
+// Operación de multiplicación
+alohomora multiplicacion = a * b
+conjura("Multiplicación:")
+conjura(a)
+conjura("*")
+conjura(b)
+conjura("=")
+conjura(multiplicacion)
+
+// Operación de división
+alohomora division = a / b
+conjura("División:")
+conjura(a)
+conjura("/")
+conjura(b)
+conjura("=")
+conjura(division)
+
+// Operaciones más complejas
+alohomora operacion_compleja = (a + b) * (a - b) / 2
+conjura("Operación compleja: (a + b) * (a - b) / 2")
+conjura("=")
+conjura(operacion_compleja)
+
+// División con decimales
+alohomora x = 7
+alohomora y = 2
+alohomora division_decimal = x / y
+conjura("División con decimales:")
+conjura(x)
+conjura("/")
+conjura(y)
+conjura("=")
+conjura(division_decimal) 
