@@ -1,0 +1,49 @@
+// Ejemplo de arreglos en eswino
+
+// Declaración de arreglos
+alohomora numeros = [1, 2, 3, 4, 5]
+alohomora frutas = ["manzana", "banana", "pera", "uva"]
+alohomora mixto = [10, "texto", 3.14, true]
+
+// Imprimir arreglos completos
+conjura("Arreglo de números:")
+conjura(numeros)
+
+conjura("Arreglo de frutas:")
+conjura(frutas)
+
+conjura("Arreglo mixto:")
+conjura(mixto)
+
+// Crear arreglos a partir de variables
+alohomora a = 10
+alohomora b = 20
+alohomora c = 30
+alohomora valores = [a, b, c]
+conjura("Arreglo de variables:")
+conjura(valores)
+
+// Operaciones con arreglos
+alohomora lista1 = [1, 2, 3]
+alohomora lista2 = [4, 5, 6]
+alohomora concatenada = lista1 + lista2
+conjura("Lista concatenada:")
+conjura(concatenada)
+
+// Crear arreglo vacío y agregar elementos
+alohomora vacio = []
+conjura("Arreglo vacío:")
+conjura(vacio)
+
+// Arreglo con valores booleanos
+alohomora boleanos = [true, false, true]
+conjura("Arreglo de valores booleanos:")
+conjura(boleanos)
+
+// Variables booleanas
+alohomora verdadero = true
+alohomora falso = false
+conjura("Valor booleano verdadero:")
+conjura(verdadero)
+conjura("Valor booleano falso:")
+conjura(falso) 

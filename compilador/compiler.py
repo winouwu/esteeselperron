@@ -2,6 +2,7 @@
 
 import sys
 import re
+import json
 
 def interpret_eswino(code):
     """
@@ -9,6 +10,10 @@ def interpret_eswino(code):
     """
     # Diccionario para almacenar las variables
     variables = {}
+    
+    # Valores booleanos para usar en eval
+    variables["true"] = True
+    variables["false"] = False
     
     # Procesar el código línea por línea
     for line in code.splitlines():
@@ -24,10 +29,24 @@ def interpret_eswino(code):
             
             # Evaluar el valor de la variable (números, cadenas, etc.)
             try:
+                # Si es un arreglo [1,2,3]
+                if var_value.startswith('[') and var_value.endswith(']'):
+                    try:
+                        # Intentar evaluar como arreglo
+                        array_value = eval(var_value, {"__builtins__": {}}, variables)
+                        variables[var_name] = array_value
+                    except:
+                        # Si falla, guardarlo como texto
+                        variables[var_name] = var_value
                 # Si es una cadena entre comillas
-                if (var_value.startswith('"') and var_value.endswith('"')) or \
+                elif (var_value.startswith('"') and var_value.endswith('"')) or \
                    (var_value.startswith("'") and var_value.endswith("'")):
                     variables[var_name] = var_value[1:-1]
+                # Si es un valor booleano
+                elif var_value.lower() == "true":
+                    variables[var_name] = True
+                elif var_value.lower() == "false":
+                    variables[var_name] = False
                 else:
                     # Intentar evaluar como expresión (número, operación, etc.)
                     variables[var_name] = eval(var_value, {"__builtins__": {}}, variables)
@@ -46,12 +65,21 @@ def interpret_eswino(code):
                 print(content[1:-1])
             # Si es una variable
             elif content in variables:
-                print(variables[content])
+                # Si la variable es una lista, formatearla bonita
+                if isinstance(variables[content], list):
+                    print(variables[content])
+                elif isinstance(variables[content], bool):
+                    print("true" if variables[content] else "false")
+                else:
+                    print(variables[content])
             else:
                 try:
                     # Intentar evaluar como expresión
                     result = eval(content, {"__builtins__": {}}, variables)
-                    print(result)
+                    if isinstance(result, bool):
+                        print("true" if result else "false")
+                    else:
+                        print(result)
                 except:
                     print(f"Error: No se pudo evaluar '{content}'")
 
