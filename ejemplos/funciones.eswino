@@ -1,0 +1,96 @@
+// Ejemplo de funciones en eswino
+
+// Función simple sin parámetros
+hechizo saludar():
+    conjura("¡Hola mundo desde una función!")
+fin
+
+// Función con parámetros
+hechizo sumar(a, b):
+    regresa a + b
+fin
+
+// Función con lógica condicional
+hechizo es_par(numero):
+    si numero % 2 == 0:
+        regresa true
+    sino:
+        regresa false
+    fin
+fin
+
+// Función con ciclo
+hechizo factorial(n):
+    alohomora resultado = 1
+    para i en rango(1, n + 1):
+        alohomora resultado = resultado * i
+    fin
+    regresa resultado
+fin
+
+// Función que usa otras funciones
+hechizo suma_factoriales(a, b):
+    alohomora fact_a = factorial(a)
+    alohomora fact_b = factorial(b)
+    regresa sumar(fact_a, fact_b)
+fin
+
+// Función con múltiples retornos (dependiendo de condiciones)
+hechizo calificar(puntuacion):
+    si puntuacion >= 90:
+        regresa "A - Excelente"
+    sino:
+        si puntuacion >= 80:
+            regresa "B - Bien"
+        sino:
+            si puntuacion >= 70:
+                regresa "C - Regular"
+            sino:
+                si puntuacion >= 60:
+                    regresa "D - Suficiente"
+                sino:
+                    regresa "F - Reprobado"
+                fin
+            fin
+        fin
+    fin
+fin
+
+// Pruebas de las funciones
+
+// Llamada a función simple
+conjura("Llamando a la función saludar:")
+saludar()
+
+// Llamada a función con parámetros
+conjura("Suma de 5 y 3:")
+alohomora resultado_suma = sumar(5, 3)
+conjura(resultado_suma)
+
+// Llamada a función condicional
+conjura("¿Es par el número 7?")
+alohomora es_par_7 = es_par(7)
+conjura(es_par_7)
+
+conjura("¿Es par el número 8?")
+alohomora es_par_8 = es_par(8)
+conjura(es_par_8)
+
+// Llamada a función con ciclo
+conjura("Factorial de 5:")
+alohomora fact_5 = factorial(5)
+conjura(fact_5)
+
+// Llamada a función que usa otras funciones
+conjura("Suma de factoriales de 4 y 3:")
+alohomora suma_facts = suma_factoriales(4, 3)
+conjura(suma_facts)
+
+// Llamada a función con múltiples retornos
+conjura("Calificación para 85 puntos:")
+alohomora calif_85 = calificar(85)
+conjura(calif_85)
+
+conjura("Calificación para 65 puntos:")
+alohomora calif_65 = calificar(65)
+conjura(calif_65) 
