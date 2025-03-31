@@ -1,0 +1,52 @@
+// Ejemplo de ciclo para (for) en eswino
+
+// Ciclo para simple (del 0 al 4)
+conjura("Ciclo para del 0 al 5:")
+para i en rango(5):
+    conjura(i)
+fin
+
+// Ciclo para con inicio y fin especificados
+conjura("Ciclo para del 10 al 15:")
+para j en rango(10, 15):
+    conjura(j)
+fin
+
+// Ciclo para con inicio, fin y paso
+conjura("Ciclo para de 0 a 10 con paso 2:")
+para k en rango(0, 10, 2):
+    conjura(k)
+fin
+
+// Ciclo para decreciente
+conjura("Ciclo para decreciente del 10 al 1:")
+para m en rango(10, 0, -1):
+    conjura(m)
+fin
+
+// Uso práctico: calcular la suma de los primeros 10 números
+alohomora suma = 0
+para n en rango(1, 11):
+    alohomora suma = suma + n
+fin
+conjura("La suma de los números del 1 al 10 es:")
+conjura(suma)
+
+// Combinación de ciclo para y condicional
+conjura("Números pares del 1 al 10:")
+para p en rango(1, 11):
+    si p % 2 == 0:
+        conjura(p)
+    fin
+fin
+
+// Tabla de multiplicar simplificada
+alohomora multiplicando = 7
+conjura("Tabla de multiplicar del 7:")
+para q en rango(1, 11):
+    alohomora resultado = multiplicando * q
+    conjura("7 x")
+    conjura(q)
+    conjura("=")
+    conjura(resultado)
+fin 

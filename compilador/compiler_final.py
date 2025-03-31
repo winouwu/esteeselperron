@@ -14,6 +14,40 @@ def interpret_eswino(code):
     variables["true"] = True
     variables["false"] = False
     
+    # Función para sobrescribir el operador + para manejar concatenación de strings
+    def custom_eval(expr, vars_dict):
+        # Si hay operaciones de concatenación con cadenas, procesar manualmente
+        if "+" in expr and ('"' in expr or "'" in expr or any(isinstance(vars_dict.get(var), str) for var in vars_dict)):
+            # Dividir la expresión por el operador +
+            parts = expr.split("+")
+            result = ""
+            
+            for part in parts:
+                part = part.strip()
+                # Evaluar cada parte individualmente
+                if part.startswith('"') and part.endswith('"'):
+                    # Es una cadena literal
+                    result += part[1:-1]
+                elif part.startswith("'") and part.endswith("'"):
+                    # Es una cadena literal con comillas simples
+                    result += part[1:-1]
+                elif part in vars_dict:
+                    # Es una variable
+                    result += str(vars_dict[part])
+                else:
+                    # Es una expresión
+                    try:
+                        val = eval(part, {"__builtins__": {}}, vars_dict)
+                        result += str(val)
+                    except:
+                        # Si falla, simplemente agregar la parte sin procesar
+                        result += part
+            
+            return result
+        else:
+            # Si no hay concatenación de cadenas, usar eval normal
+            return eval(expr, {"__builtins__": {}}, vars_dict)
+    
     # Eliminar comentarios multilínea
     code = re.sub(r'¡.*?!', '', code, flags=re.DOTALL)
     
@@ -35,7 +69,7 @@ def interpret_eswino(code):
             if block_type == "if" and current_line == "sino:" and depth == 1:
                 return i  # Si estamos buscando el fin de un if, sino: es un terminador a nivel 1
                 
-            if current_line.startswith('si ') or current_line.startswith('mientras '):
+            if current_line.startswith('si ') or current_line.startswith('mientras ') or current_line.startswith('para '):
                 depth += 1
             elif current_line == 'fin':
                 depth -= 1
@@ -77,7 +111,7 @@ def interpret_eswino(code):
                         while j < end_if_idx:
                             inner_line = lines[j].strip()
                             if inner_line and not inner_line.startswith('//') and inner_line != 'fin' and inner_line != 'sino:':
-                                process_line(inner_line, variables)
+                                process_line(inner_line, variables, custom_eval)
                             j += 1
                         
                         # Saltar el bloque sino si existe
@@ -96,7 +130,7 @@ def interpret_eswino(code):
                             while j < end_sino_idx:
                                 inner_line = lines[j].strip()
                                 if inner_line and not inner_line.startswith('//') and inner_line != 'fin':
-                                    process_line(inner_line, variables)
+                                    process_line(inner_line, variables, custom_eval)
                                 j += 1
                             
                             i = end_sino_idx + 1  # Continuar después del fin del bloque sino
@@ -139,12 +173,65 @@ def interpret_eswino(code):
                         
                         # Ejecutar cada línea del cuerpo del ciclo
                         for body_line in while_body:
-                            process_line(body_line, variables)
+                            process_line(body_line, variables, custom_eval)
                     
                     i = end_while_idx + 1  # Continuar después del fin del ciclo
                 except Exception as e:
                     print(f"Error en ciclo mientras: {e}")
                     i = end_while_idx + 1  # Saltar el bloque completo
+            else:
+                i += 1
+
+        # Procesar ciclo 'para' (for)
+        elif line.startswith('para '):
+            # Sintaxis: para variable en rango(inicio, fin, paso):
+            for_match = re.match(r'para\s+(\w+)\s+en\s+rango\(([^,]+)(?:,\s*([^,]+))?(?:,\s*([^)]+))?\):', line)
+            if for_match:
+                var_name = for_match.group(1)
+                start_val = for_match.group(2)
+                end_val = for_match.group(3)
+                step_val = for_match.group(4)
+                
+                try:
+                    # Evaluar parámetros del rango
+                    if end_val is None:
+                        # Si solo hay un valor, ese es el fin y el inicio es 0
+                        start = 0
+                        end = eval(start_val, {"__builtins__": {}}, variables)
+                    else:
+                        # Si hay dos valores, son inicio y fin
+                        start = eval(start_val, {"__builtins__": {}}, variables)
+                        end = eval(end_val, {"__builtins__": {}}, variables)
+                    
+                    # El paso es opcional, por defecto es 1
+                    step = 1
+                    if step_val is not None:
+                        step = eval(step_val, {"__builtins__": {}}, variables)
+                    
+                    # Encontrar el fin del bloque para
+                    end_for_idx = find_block_end(i + 1)
+                    
+                    # Extraer las líneas del cuerpo del ciclo
+                    for_body = []
+                    j = i + 1
+                    while j < end_for_idx:
+                        inner_line = lines[j].strip()
+                        if inner_line and not inner_line.startswith('//') and inner_line != 'fin':
+                            for_body.append(inner_line)
+                        j += 1
+                    
+                    # Ejecutar el ciclo para
+                    for value in range(start, end, step):
+                        variables[var_name] = value
+                        
+                        # Ejecutar cada línea del cuerpo del ciclo
+                        for body_line in for_body:
+                            process_line(body_line, variables, custom_eval)
+                    
+                    i = end_for_idx + 1  # Continuar después del fin del ciclo
+                except Exception as e:
+                    print(f"Error en ciclo para: {e}")
+                    i = find_block_end(i + 1) + 1  # Saltar el bloque completo
             else:
                 i += 1
         
@@ -154,10 +241,10 @@ def interpret_eswino(code):
         
         # Procesar líneas normales
         else:
-            process_line(line, variables)
+            process_line(line, variables, custom_eval)
             i += 1
 
-def process_line(line, variables):
+def process_line(line, variables, custom_eval):
     """Procesa una línea de código eswino"""
     line = line.strip()
     
@@ -186,8 +273,11 @@ def process_line(line, variables):
             elif var_value.lower() == "false":
                 # Booleano falso
                 variables[var_name] = False
+            # Verificar si es una expresión con concatenación de cadenas
+            elif "+" in var_value and ('"' in var_value or "'" in var_value or any(isinstance(variables.get(var), str) for var in variables)):
+                variables[var_name] = custom_eval(var_value, variables)
             else:
-                # Expresión
+                # Expresión normal
                 variables[var_name] = eval(var_value, {"__builtins__": {}}, variables)
         except Exception as e:
             print(f"Error asignando variable '{var_name}': {e}")
@@ -215,6 +305,10 @@ def process_line(line, variables):
                     print(f"[{', '.join(elements)}]")
                 else:
                     print(value)
+            elif "+" in content:
+                # Posible concatenación
+                result = custom_eval(content, variables)
+                print(result)
             else:
                 # Expresión
                 result = eval(content, {"__builtins__": {}}, variables)
