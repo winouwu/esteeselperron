@@ -117,7 +117,7 @@ def interpret_eswino(code):
                 # Encontrar el fin del bloque mientras
                 end_while_idx = find_block_end(i + 1)
                 
-                # Extraer las líneas del cuerpo del ciclo
+                # Extraer las líneas del cuerpo del ciclo para evitar ciclos infinitos
                 while_body = []
                 j = i + 1
                 while j < end_while_idx:
@@ -209,6 +209,10 @@ def process_line(line, variables):
                 value = variables[content]
                 if isinstance(value, bool):
                     print("true" if value else "false")
+                elif isinstance(value, list):
+                    # Si es una lista, dar formato especial
+                    elements = [str(e) if not isinstance(e, bool) else ("true" if e else "false") for e in value]
+                    print(f"[{', '.join(elements)}]")
                 else:
                     print(value)
             else:
@@ -224,7 +228,7 @@ def process_line(line, variables):
 
 def main():
     if len(sys.argv) < 2:
-        print("Uso: python compiler.py archivo.eswino")
+        print("Uso: python compiler_final.py archivo.eswino")
         sys.exit(1)
         
     filename = sys.argv[1]

@@ -1,0 +1,83 @@
+// Ejemplo de condicionales y ciclos en eswino
+
+$ Ejemplo de condicional simple
+alohomora edad = 18
+
+conjura("Comprobando la edad:")
+si edad >= 18:
+    conjura("Eres mayor de edad")
+fin
+
+$ Ejemplo de condicional con sino (else)
+alohomora numero = 7
+
+conjura("Comprobando si el número es par o impar:")
+si numero % 2 == 0:
+    conjura("El número es par")
+sino:
+    conjura("El número es impar")
+fin
+
+$ Condicionales anidados
+alohomora calificacion = 85
+
+conjura("Evaluando calificación:")
+si calificacion >= 90:
+    conjura("Calificación excelente (A)")
+sino:
+    si calificacion >= 80:
+        conjura("Calificación buena (B)")
+    sino:
+        si calificacion >= 70:
+            conjura("Calificación regular (C)")
+        sino:
+            si calificacion >= 60:
+                conjura("Calificación suficiente (D)")
+            sino:
+                conjura("Calificación insuficiente (F)")
+            fin
+        fin
+    fin
+fin
+
+$ Ejemplo de ciclo mientras (while)
+alohomora contador = 1
+
+conjura("Contando del 1 al 5:")
+mientras contador <= 5:
+    conjura(contador)
+    alohomora contador = contador + 1
+fin
+
+$ Uso más complejo: calcular factorial
+alohomora num = 5
+alohomora factorial = 1
+alohomora i = 1
+
+conjura("Calculando el factorial de:")
+conjura(num)
+
+mientras i <= num:
+    alohomora factorial = factorial * i
+    alohomora i = i + 1
+fin
+
+conjura("El factorial es:")
+conjura(factorial)
+
+$ Combinación de ciclos y condicionales
+alohomora suma = 0
+alohomora j = 1
+
+conjura("Sumando solo números pares del 1 al 10:")
+mientras j <= 10:
+    si j % 2 == 0:
+        alohomora suma = suma + j
+        conjura("Sumando:")
+        conjura(j)
+    fin
+    alohomora j = j + 1
+fin
+
+conjura("La suma de los números pares es:")
+conjura(suma) 
