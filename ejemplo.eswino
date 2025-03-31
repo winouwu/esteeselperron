@@ -1,0 +1,5 @@
+// Este es un ejemplo de código eswino
+
+conjura("Hola Mundo desde eswino!")
+conjura("Esta es otra línea")
+conjura("El compilador funciona!") 
