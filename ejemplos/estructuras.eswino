@@ -9,15 +9,15 @@ alohomora pila_items = []
 pila_items.agregar("int")
 
 // Verificar que se agregó correctamente
-conjura("Pila después de agregar 'int':")
-conjura(pila_items)
+$ conjura("Pila después de agregar 'int':")
+$ conjura(pila_items)
 
 // Agregar otro elemento
 pila_items.agregar("string")
 
 // Verificar que se agregó correctamente
-conjura("Pila después de agregar 'string':")
-conjura(pila_items)
+$ conjura("Pila después de agregar 'string':")
+$ conjura(pila_items)
 
 // Operación PEEK - Ver el elemento en la cima sin eliminarlo
 alohomora elemento_cima = pila_items.ultimo()
@@ -34,8 +34,8 @@ conjura("Tipo extraído:")
 conjura(elemento_extraido)
 
 // Verificar estado actual de la pila
-conjura("Pila después de extraer 'string':")
-conjura(pila_items)
+$ conjura("Pila después de extraer 'string':")
+$ conjura(pila_items)
 
 // ----- ESTRUCTURA DE COLA (QUEUE) -----
 
@@ -48,8 +48,8 @@ cola_items.agregar("operador")
 cola_items.agregar("valor")
 
 // Verificar que se agregaron correctamente
-conjura("Cola después de agregar elementos:")
-conjura(cola_items)
+$ conjura("Cola después de agregar elementos:")
+$ conjura(cola_items)
 
 // Operación FRONT - Ver el primer elemento sin eliminarlo
 alohomora primer_elemento = cola_items.primero()
@@ -64,5 +64,5 @@ conjura("Token procesado:")
 conjura(elemento_procesado)
 
 // Verificar estado actual de la cola
-conjura("Cola después de procesar el primer token:")
-conjura(cola_items) 
+$ conjura("Cola después de procesar el primer token:")
+$ conjura(cola_items) 

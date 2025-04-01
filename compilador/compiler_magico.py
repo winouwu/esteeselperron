@@ -212,8 +212,8 @@ def interpret_eswino(code):
         """Procesa una línea de código eswino"""
         line = line.strip()
         
-        # Para depuración
-        print(f"Procesando: {line}")
+        # Para depuración (comentado para tener una salida más limpia)
+        # print(f"Procesando: {line}")
         
         # Ignorar líneas vacías o comentarios
         if not line or line.startswith('//'):
@@ -298,7 +298,6 @@ def interpret_eswino(code):
                 else:
                     # Expresión
                     variables[var_name] = custom_eval(var_value, variables)
-                print(f"Variable '{var_name}' asignada con valor: {variables[var_name]}")
             except Exception as e:
                 print(f"Error asignando variable '{var_name}': {e}")
             return
@@ -352,7 +351,6 @@ def interpret_eswino(code):
                     result = variables[magic_method](*args)
                     variables[obj_name] = obj  # Actualizar el objeto si fue modificado
                     variables[var_name] = result  # Asignar el resultado a la variable
-                    print(f"Variable '{var_name}' asignada con valor: {variables[var_name]}")
                 except Exception as e:
                     print(f"¡Caray! Error al llamar al método mágico: {e}")
                 return
@@ -370,21 +368,21 @@ def interpret_eswino(code):
                 if (content.startswith('"') and content.endswith('"')) or \
                    (content.startswith("'") and content.endswith("'")):
                     # Cadena
-                    print(content[1:-1])
+                    print(f">>> {content[1:-1]}")
                 elif content in variables:
                     # Variable
                     value = variables[content]
                     if isinstance(value, bool):
-                        print("true" if value else "false")
+                        print(f">>> {'true' if value else 'false'}")
                     else:
-                        print(value)
+                        print(f">>> {value}")
                 else:
                     # Expresión
                     result = custom_eval(content, variables)
                     if isinstance(result, bool):
-                        print("true" if result else "false")
+                        print(f">>> {'true' if result else 'false'}")
                     else:
-                        print(result)
+                        print(f">>> {result}")
             except Exception as e:
                 print(f"Error en conjura: {e}")
             return
@@ -516,11 +514,10 @@ def main():
     try:
         with open(filename, 'r', encoding='utf-8') as file:
             code = file.read()
-            print(f"Archivo cargado: {filename}")
+            print(f"\n=== Iniciando interpretación del archivo: {filename} ===")
             print(f"Tamaño del código: {len(code)} caracteres")
-            print("Iniciando interpretación del código...")
             interpret_eswino(code)
-            print("Interpretación finalizada con éxito.")
+            print("\n=== Interpretación finalizada con éxito ===")
     except FileNotFoundError:
         print(f"Error: No se encontró el archivo {filename}")
         sys.exit(1)
