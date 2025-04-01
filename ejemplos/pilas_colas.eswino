@@ -1,0 +1,29 @@
+// Implementación simplificada de Pila (Stack) y Cola (Queue) en eswino
+
+// Inicializar variables
+alohomora pila_items = ["int"]
+alohomora pila_ultimo_elemento = "string"
+
+alohomora cola_items = ["identificador", "operador", "valor"]
+alohomora cola_primer_elemento = "identificador"
+alohomora cola_elemento_procesado = "identificador"
+
+// Simulación simple del comportamiento de pilas y colas
+alohomora tipo_actual_pila = pila_ultimo_elemento
+alohomora tipo_extraido_pila = pila_ultimo_elemento
+
+alohomora primer_token_cola = cola_primer_elemento
+alohomora token_procesado_cola = cola_elemento_procesado
+
+// Mostrar resultados de simulación
+conjura("Último tipo agregado:")
+conjura(tipo_actual_pila)
+
+conjura("Tipo extraído:")
+conjura(tipo_extraido_pila)
+
+conjura("Primer token:")
+conjura(primer_token_cola)
+
+conjura("Token procesado:")
+conjura(token_procesado_cola) 

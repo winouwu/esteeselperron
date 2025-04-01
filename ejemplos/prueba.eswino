@@ -1,0 +1,6 @@
+// Programa de prueba muy simple
+conjura("Hola mundo mágico")
+
+alohomora numero = 42
+conjura("El número mágico es:")
+conjura(numero) 

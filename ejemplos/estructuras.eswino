@@ -1,0 +1,68 @@
+// Implementación de Pila (Stack) y Cola (Queue) en eswino usando métodos mágicos
+
+// ----- ESTRUCTURA DE PILA (STACK) -----
+
+// Inicializar pila vacía
+alohomora pila_items = []
+
+// Operación PUSH - Agregar un elemento a la pila
+pila_items.agregar("int")
+
+// Verificar que se agregó correctamente
+conjura("Pila después de agregar 'int':")
+conjura(pila_items)
+
+// Agregar otro elemento
+pila_items.agregar("string")
+
+// Verificar que se agregó correctamente
+conjura("Pila después de agregar 'string':")
+conjura(pila_items)
+
+// Operación PEEK - Ver el elemento en la cima sin eliminarlo
+alohomora elemento_cima = pila_items.ultimo()
+
+// Mostrar el elemento en la cima (último tipo agregado)
+conjura("Último tipo agregado:")
+conjura(elemento_cima)
+
+// Operación POP - Eliminar y devolver el elemento de la cima
+alohomora elemento_extraido = pila_items.extraer()
+
+// Mostrar el elemento extraído
+conjura("Tipo extraído:")
+conjura(elemento_extraido)
+
+// Verificar estado actual de la pila
+conjura("Pila después de extraer 'string':")
+conjura(pila_items)
+
+// ----- ESTRUCTURA DE COLA (QUEUE) -----
+
+// Inicializar cola vacía
+alohomora cola_items = []
+
+// Operación ENQUEUE - Agregar elementos a la cola
+cola_items.agregar("identificador")
+cola_items.agregar("operador")
+cola_items.agregar("valor")
+
+// Verificar que se agregaron correctamente
+conjura("Cola después de agregar elementos:")
+conjura(cola_items)
+
+// Operación FRONT - Ver el primer elemento sin eliminarlo
+alohomora primer_elemento = cola_items.primero()
+conjura("Primer token:")
+conjura(primer_elemento)
+
+// Operación DEQUEUE - Eliminar y devolver el primer elemento
+alohomora elemento_procesado = cola_items.extraer(0)
+
+// Mostrar el elemento procesado
+conjura("Token procesado:")
+conjura(elemento_procesado)
+
+// Verificar estado actual de la cola
+conjura("Cola después de procesar el primer token:")
+conjura(cola_items) 

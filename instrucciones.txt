@@ -1,0 +1,90 @@
+# Estructura de Pila (Stack) para Análisis Semántico
+class Stack:
+    def __init__(self):
+        self.items = []
+   
+    def push(self, item):
+        """Agrega un elemento a la cima de la pila"""
+        self.items.append(item)
+   
+    def pop(self):
+        """Elimina y devuelve el elemento de la cima de la pila"""
+        if not self.is_empty():
+            return self.items.pop()
+        raise IndexError("La pila está vacía")
+   
+    def peek(self):
+        """Devuelve el elemento de la cima sin eliminarlo"""
+        if not self.is_empty():
+            return self.items[-1]
+        raise IndexError("La pila está vacía")
+   
+    def is_empty(self):
+        """Verifica si la pila está vacía"""
+        return len(self.items) == 0
+
+# Estructura de Cola (Queue) para Análisis Semántico
+class Queue:
+    def __init__(self):
+        self.items = []
+   
+    def enqueue(self, item):
+        """Agrega un elemento al final de la cola"""
+        self.items.append(item)
+   
+    def dequeue(self):
+        """Elimina y devuelve el primer elemento de la cola"""
+        if not self.is_empty():
+            return self.items.pop(0)
+        raise IndexError("La cola está vacía")
+   
+    def front(self):
+        """Devuelve el primer elemento sin eliminarlo"""
+        if not self.is_empty():
+            return self.items[0]
+        raise IndexError("La cola está vacía")
+   
+    def is_empty(self):
+        """Verifica si la cola está vacía"""
+        return len(self.items) == 0
+
+# Ejemplo de uso en Análisis Semántico
+def ejemplo_analisis_semantico():
+    # Uso de Pila para verificar tipos y scope
+    tipos_pila = Stack()
+    tipos_pila.push("int")
+    tipos_pila.push("string")
+   
+    print("Último tipo agregado:", tipos_pila.peek())
+    print("Tipo extraído:", tipos_pila.pop())
+   
+    # Uso de Cola para manejo de tokens
+    tokens_cola = Queue()
+    tokens_cola.enqueue("identificador")
+    tokens_cola.enqueue("operador")
+    tokens_cola.enqueue("valor")
+   
+    print("Primer token:", tokens_cola.front())
+    print("Token procesado:", tokens_cola.dequeue())
+
+# Ejecutar ejemplo
+ejemplo_analisis_semantico()
+
+
+
+
+
+
+
+TERMINAL
+
+Último tipo agregado: string 
+Tipo extraído: string 
+Primer token: identificador 
+Token procesado: identificador
+
+
+
+
+tu reto final, es crear este codigo de python pero en .eswino, para hacerlo sencillo, no es necesario que uses clases ni funciones, solo te pido que repliques lo que esta ahi como. este codigo trata de pilas y colas, si neceistas crear sintaxis nueva, hazlo, pero ahi ya tenemos mucho de lo que usaremos. MOdifica pero no afectes a los otros codigos .eswino, 
+Tiene que imprimir lo ultimo que sale, que son 4 lineas, eso se hace con el conjura y es necesrio poner el tipo de dato.

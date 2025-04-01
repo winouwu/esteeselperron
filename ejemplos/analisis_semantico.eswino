@@ -1,0 +1,22 @@
+// Ejemplo de uso de Pila y Cola para Análisis Semántico en eswino
+// Este código simula las estructuras de datos sin implementar funciones
+
+// Variables para mostrar los resultados esperados
+alohomora ultimo_tipo = "string"
+alohomora tipo_extraido = "string"
+alohomora primer_token = "identificador"
+alohomora token_procesado = "identificador"
+
+// Mostrar los resultados de Pila
+conjura("Último tipo agregado:")
+conjura(ultimo_tipo)
+
+conjura("Tipo extraído:")
+conjura(tipo_extraido)
+
+// Mostrar los resultados de Cola
+conjura("Primer token:")
+conjura(primer_token)
+
+conjura("Token procesado:")
+conjura(token_procesado) 

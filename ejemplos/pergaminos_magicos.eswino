@@ -1,0 +1,67 @@
+¡ Pergaminos Mágicos - Ejemplo de uso de métodos mágicos para listas en eswino !
+
+// Crear un nuevo pergamino (lista)
+alohomora pergamino = []
+conjura("Pergamino creado: ")
+conjura(pergamino)
+
+// Agregar elementos al pergamino usando el método agregar
+pergamino.agregar("Hechizo de levitación")
+pergamino.agregar("Poción de invisibilidad")
+pergamino.agregar("Encantamiento de fuego")
+conjura("Pergamino después de agregar elementos: ")
+conjura(pergamino)
+
+// Crear un pergamino de números
+alohomora numeros_magicos = [7, 13, 42]
+conjura("Números mágicos iniciales: ")
+conjura(numeros_magicos)
+
+// Agregar más números
+numeros_magicos.agregar(666)
+numeros_magicos.agregar(888)
+conjura("Números mágicos después de agregar: ")
+conjura(numeros_magicos)
+
+// Obtener el primer elemento
+alohomora primer_hechizo = pergamino.primero()
+conjura("Primer hechizo en el pergamino: ")
+conjura(primer_hechizo)
+
+// Obtener el último elemento
+alohomora ultimo_numero = numeros_magicos.ultimo()
+conjura("Último número mágico: ")
+conjura(ultimo_numero)
+
+// Extraer elementos (con efecto secundario de modificar la lista)
+alohomora hechizo_extraido = pergamino.extraer()
+conjura("Hechizo extraído del final: ")
+conjura(hechizo_extraido)
+conjura("Pergamino después de extraer: ")
+conjura(pergamino)
+
+// Extraer elemento con índice específico
+alohomora numero_extraido = numeros_magicos.extraer(1)
+conjura("Número extraído del índice 1: ")
+conjura(numero_extraido)
+conjura("Lista de números después de extraer: ")
+conjura(numeros_magicos)
+
+// Manejo de errores - intentar extraer de una lista vacía
+alohomora lista_vacia = []
+alohomora elemento_extraido = lista_vacia.extraer()
+conjura("Si ves esto, extraer de lista vacía no lanzó error.")
+
+// Combinar con estructuras de control
+alohomora ingredientes = ["Ojo de tritón", "Pata de rana", "Lana de murciélago", "Escama de dragón"]
+conjura("Receta mágica - ingredientes necesarios:")
+
+alohomora i = 1
+mientras i <= 4:
+    conjura(i + ". " + ingredientes.primero())
+    alohomora descartado = ingredientes.extraer(0)
+    i = i + 1
+fin
+
+conjura("Todos los ingredientes han sido utilizados!")
+conjura(ingredientes) 

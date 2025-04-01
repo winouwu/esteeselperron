@@ -1,0 +1,47 @@
+// Ejemplo de operaciones con listas en eswino
+
+// Crear una lista vacía
+alohomora mi_lista = []
+conjura("Lista vacía: ")
+conjura(mi_lista)
+
+// Agregar elementos a la lista
+mi_lista.agregar(10)
+mi_lista.agregar(20)
+mi_lista.agregar(30)
+conjura("Lista después de agregar elementos: ")
+conjura(mi_lista)
+
+// Obtener el primer elemento
+alohomora primero = mi_lista.primero()
+conjura("El primer elemento es: ")
+conjura(primero)
+
+// Obtener el último elemento
+alohomora ultimo = mi_lista.ultimo()
+conjura("El último elemento es: ")
+conjura(ultimo)
+
+// Extraer el último elemento
+alohomora elemento_extraido = mi_lista.extraer()
+conjura("Elemento extraído: ")
+conjura(elemento_extraido)
+conjura("Lista después de extraer: ")
+conjura(mi_lista)
+
+// Extraer un elemento por índice
+alohomora elemento_0 = mi_lista.extraer(0)
+conjura("Elemento extraído en índice 0: ")
+conjura(elemento_0)
+conjura("Lista después de extraer por índice: ")
+conjura(mi_lista)
+
+// Agregar más elementos
+mi_lista.agregar("hola")
+mi_lista.agregar("mundo")
+conjura("Lista mezclada: ")
+conjura(mi_lista)
+
+// Concatenación de elementos
+alohomora mensaje = "El elemento actual es: " + mi_lista.primero()
+conjura(mensaje) 
